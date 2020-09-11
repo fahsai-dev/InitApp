@@ -1,16 +1,25 @@
 import 'react-native-gesture-handler';
 import React, { useEffect, useContext, useState } from "react";
+import { observer } from 'mobx-react'
+import AsyncStorage from '@react-native-community/async-storage';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import {
+  LoadingIndicator
+} from "./components";
+import {
   LoginScreen,
 } from "./screens/AuthStack";
 import {
   HomeScreen
-} from './screens/AppStack'
+} from './screens/AppStack';
+import {
+  LoadingContext
+} from './contexts';
 
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
@@ -39,8 +48,26 @@ const AuthenStackScreen = () => (
   </AuthenStack.Navigator>
 );
 
-const AppNavigator = () => {
+const AppNavigator = observer(() => {
+  const loadingContext = useContext(LoadingContext);
   const [accessToken, setAccessToken] = useState(true);
+
+  // Fetch the token from storage then navigate to our appropriate place
+  const bootstrapAsync = async () => {
+    try {
+      loadingContext.loading = true;
+      let userToken = await AsyncStorage.getItem('accessToken');
+      // setAccessToken(userToken);
+      setTimeout(() => {
+        loadingContext.loading = false;
+      }, 3000);
+    } catch (e) {
+      console.log(`bootstrapAsync: ${e}`);
+    }
+  };
+  useEffect(() => {
+    bootstrapAsync()
+  }, []);
 
   return (
     <>
@@ -52,9 +79,12 @@ const AppNavigator = () => {
               : <AuthenStackScreen />
           }
         </NavigationContainer>
+
+        <LoadingIndicator />
+
       </SafeAreaProvider>
     </>
   );
-};
+});
 
 export default AppNavigator;
