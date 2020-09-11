@@ -1,9 +1,10 @@
 # InitApp React Native
 
-Change DisplayName in app.json
+Rename use react-native-rename
 ```
-$ rm -rf android && rm -rf ios
-$ react-native eject
+Switch to new branch first
+$ git checkout -b rename-app
+$ npx react-native-rename "NewNameApp"
 ```
 
 Run 
