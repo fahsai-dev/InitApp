@@ -16,3 +16,10 @@ $ react-native run-ios
 Android
 $ react-native run-android
 ```
+
+Add Custom Fonts
+```
+add file font .ttf to directory src/assets/fonts and run command
+$ npx react-native link
+Use your 'FontName-Regular' in fontFamily
+```
