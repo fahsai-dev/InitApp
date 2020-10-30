@@ -5,11 +5,11 @@
  * @format
  * @flow strict-local
  */
-
+import 'react-native-gesture-handler';
 import React from 'react';
 import AppNavigator from './AppNavigator';
 
-const App: () => React$Node = () => {
+const App: React.FunctionComponent<any> = () => {
   return (
     <>
       <AppNavigator />
