@@ -4,7 +4,7 @@ import { observer } from 'mobx-react'
 import { LoadingContext } from '../contexts';
 import colors from '../helpers/colors';
 
-const LoadingIndicator = observer(() => {
+const LoadingIndicator: React.FunctionComponent<any> = observer(() => {
   const loadingContext = useContext(LoadingContext);
 
   if (Platform.OS === 'ios') {
@@ -48,6 +48,8 @@ const LoadingIndicator = observer(() => {
       );
     }
   }
+
+  return null;
 });
 
 export default LoadingIndicator;

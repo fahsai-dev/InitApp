@@ -9,7 +9,7 @@ class LoadingContext {
   }
 
   @action
-  setLoading = (loading) => {
+  setLoading = (loading: boolean) => {
     this.loading = loading;
   }
 }

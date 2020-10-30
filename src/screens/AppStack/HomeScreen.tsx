@@ -4,7 +4,7 @@ import {
   Text
 } from "../../components";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ }) => {
   return (
     <SafeAreaView
       style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}

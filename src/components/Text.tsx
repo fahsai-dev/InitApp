@@ -2,15 +2,14 @@ import { Platform } from 'react-native';
 import styled from 'styled-components/native';
 import colors from '../helpers/colors';
 
-const fontFamily = (props) => {
+const fontFamily = () => {
   return 'System';
 };
 
 const Text = styled.Text`
   fontFamily: ${fontFamily};
-  color: ${(props) => props.fontColor || colors.black};
-  fontSize: ${(props) => props.fontSize || '16'}px;
-  textTransform: ${(props) => (props.uppercase ? 'uppercase' : 'none')};
+  color: ${(props: any) => props.fontColor || colors.black};
+  fontSize: ${(props: any) => props.fontSize || '16'}px;
 `;
 
 export default Text;
